@@ -1,11 +1,10 @@
 import express from 'express';
-import validateRequest from '../../middlewares/validateRequest';
 import UserController from './user.controller';
 import { userValidation } from './user.validation';
-import auth from '../../middlewares/auth';
 import { Role } from '@prisma/client';
+import validateRequest from '../../middleware/validateRequest';
+import auth from '../../middleware/auth';
 
-import { fileUploader } from '../../../helpars/fileUploaderS3';
 // import { parseBodyData } from '../../middlewares/parseBodyData';
 
 const router = express.Router();

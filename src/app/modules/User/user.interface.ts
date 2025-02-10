@@ -1,4 +1,4 @@
-import { Identifier, UserStatus } from '@prisma/client'; // Ensure that @prisma/client is installed and Identifier is correctly exported from it
+import { UserStatus } from "@prisma/client";
 
 export type IUser = {
   userName: string;
@@ -6,7 +6,6 @@ export type IUser = {
   email: string;
   status: UserStatus;
   dateOfBirth: string;
-  identifier: Identifier;
   currentLocation: string;
   firstName: string;
   lastName: string;
@@ -17,5 +16,4 @@ export type UpdateUserInput = {
   password: string;
   dateOfBirth: string;
   currentLocation: string;
-  identifier: Identifier;
 };
