@@ -48,4 +48,4 @@ router.put(
 
 router.delete('/:id', auth(Role.ADMIN), UserController.deleteUser);
 
-export const UserRoute = router;
+export const userRoute = router;
