@@ -7,6 +7,7 @@ import bodyParser from 'body-parser';
 
 import morgan from 'morgan';
 import router from './app/routes';
+import GlobalErrorHandler from './app/middleware/globalErrorHandler';
 
 const app: Application = express();
 
@@ -40,7 +41,7 @@ app.get('/', (req: Request, res: Response) => {
 app.use('/api/v1',router);
 
 // Error handling middleware
-// app.use(GlobalErrorHandler);
+app.use(GlobalErrorHandler);
 
 // 404 Not Found handler
 app.use((req: Request, res: Response, next: NextFunction) => {
