@@ -34,8 +34,8 @@ router.patch(
   UserController.updateUserProfileImage
 );
 
-router.get('/', UserController.getAllUsers);
-router.get('/:id', UserController.getUserById);
+router.get('/', auth(), UserController.getAllUsers);
+router.get('/:id', auth(), UserController.getUserById);
 
 // update user first name and last name
 router.put(
