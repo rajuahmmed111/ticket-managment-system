@@ -12,9 +12,6 @@ const router = express.Router();
 
 router.post(
   '/create',
-  // () => {
-  //   console.log('create user route sssssssss');
-  // },
   // validateRequest(userValidation.createUserSchema),
   UserController.createUser
 );
