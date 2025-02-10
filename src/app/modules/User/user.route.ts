@@ -12,7 +12,10 @@ const router = express.Router();
 
 router.post(
   '/create',
-  validateRequest(userValidation.createUserSchema),
+  // () => {
+  //   console.log('create user route sssssssss');
+  // },
+  // validateRequest(userValidation.createUserSchema),
   UserController.createUser
 );
 
@@ -44,7 +47,6 @@ router.put(
   // validateRequest(userValidation.createUserSchema),
   UserController.updateUser
 );
-
 
 router.delete('/:id', auth(Role.ADMIN), UserController.deleteUser);
 
