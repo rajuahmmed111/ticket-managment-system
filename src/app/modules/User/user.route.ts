@@ -4,6 +4,7 @@ import { userValidation } from './user.validation';
 import { Role } from '@prisma/client';
 import validateRequest from '../../middleware/validateRequest';
 import auth from '../../middleware/auth';
+import { fileUploader } from '../../../helpers/fileUploader';
 
 // import { parseBodyData } from '../../middlewares/parseBodyData';
 

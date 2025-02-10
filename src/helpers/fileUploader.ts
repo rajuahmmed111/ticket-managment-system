@@ -14,18 +14,9 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 // upload single image
-const uploadProfilePicture = upload.single('profilePicture');
-
-const uploadBirthdayWishImage = upload.single('birthdayImage');
-// upload multiple image
-const uploadMultipleMedia = upload.fields([
-  { name: 'images', maxCount: 10 },
-  { name: 'videos', maxCount: 5 },
-]);
+const uploadProfileImage = upload.single('profilePicture');
 
 export const fileUploader = {
   upload,
-  uploadMultipleMedia,
-  uploadProfilePicture,
-  uploadBirthdayWishImage,
+  uploadProfileImage,
 };
