@@ -23,6 +23,12 @@ enum Role {
     CUSTOMER
 }
 
+enum ticketStatus {
+    OPEN
+    CLOSED
+    RESOLVED
+}
+
 // ---------------------------------------------------------
 //  MODELS
 // ---------------------------------------------------------
@@ -45,4 +51,15 @@ model User {
     updatedAt    DateTime   @updatedAt
 
     @@map("users")
+}
+
+model Ticket {
+    id          String     @id @default(auto()) @map("_id") @db.ObjectId
+    subject       String
+    description String
+    status      ticketStatus
+    priority    String
+    assignedTo  String
+    createdAt    DateTime   @default(now())
+    updatedAt    DateTime   @updatedAt
 }
