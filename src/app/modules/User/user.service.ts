@@ -112,8 +112,6 @@ const getNewMembers = async () => {
       profileImage: true,
       firstName: true,
       lastName: true,
-      identifier: true,
-      currentLocation: true,
     },
     orderBy: { createdAt: 'desc' },
     take: 20,
