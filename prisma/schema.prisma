@@ -17,6 +17,16 @@ enum UserStatus {
     INACTIVE
 }
 
+enum Role {
+    SUPER_ADMIN
+    ADMIN
+    CUSTOMER
+}
+
+// ---------------------------------------------------------
+//  MODELS
+// ---------------------------------------------------------
+
 model User {
     id           String     @id @default(auto()) @map("_id") @db.ObjectId
     firstName    String?
@@ -35,10 +45,4 @@ model User {
     updatedAt    DateTime   @updatedAt
 
     @@map("users")
-}
-
-enum Role {
-    SUPER_ADMIN
-    ADMIN
-    CUSTOMER
 }
