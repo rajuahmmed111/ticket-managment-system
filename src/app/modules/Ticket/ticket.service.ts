@@ -56,6 +56,8 @@ const updateTicket = async (payload: any, ticketId: string, userId: string) => {
     where: { id: ticketId },
     data: payload,
   });
+
+  return updatedTicket;
 };
 
 export const ticketService = {
