@@ -60,7 +60,37 @@ const updateTicket = async (payload: any, ticketId: string, userId: string) => {
   return updatedTicket;
 };
 
+// ticket soft delete
+const deleteTicket = async (ticketId: string, userId: string) => {
+  if (!userId) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
+  }
+
+  const ticket = await prisma.ticket.findUnique({
+    where: {
+      id: ticketId,
+    },
+  });
+
+  if (!ticket) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Ticket not found');
+  }
+
+  if (ticket.userId !== userId) {
+    throw new ApiError(
+      httpStatus.FORBIDDEN,
+      'You are not authorized to delete this ticket'
+    );
+  }
+
+  await prisma.ticket.update({
+    where: { id: ticketId },
+    data: { isDeleted: true },
+  });
+};
+
 export const ticketService = {
   createTicket,
   updateTicket,
+  deleteTicket
 };

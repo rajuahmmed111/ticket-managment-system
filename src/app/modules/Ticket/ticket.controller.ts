@@ -38,7 +38,22 @@ const updateTicket = catchAsync(async (req, res) => {
   });
 });
 
+// ticket soft delete
+const deleteTicket = catchAsync(async (req, res) => {
+  const userId = req.user?.id;
+  const ticketId = req.params.id;
+
+  await ticketService.deleteTicket(ticketId, userId);
+
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: 'Ticket soft deleted successfully',
+  });
+});
+
 export const ticketController = {
   createTicket,
   updateTicket,
+  deleteTicket
 };
