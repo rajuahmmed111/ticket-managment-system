@@ -27,6 +27,25 @@ const sendReplay = async (
 
   const [person1, person2] = [senderId, receiverId].sort();
   const channelName = person1 + person2;
+
+  const [channel, newMessage] = await prisma.$transaction(
+    async (prismaTransaction) => {
+      let channel = await prismaTransaction.channel.findFirst({
+        where: { channelName: channelName },
+      });
+
+      if (!channel) {
+        channel = await prismaTransaction.channel.create({
+          data: {
+            channelName: channelName,
+            person1: senderId,
+            person2: receiverId,
+          },
+        });
+      }
+
+    }
+  );
 };
 
 export const replayService = {
