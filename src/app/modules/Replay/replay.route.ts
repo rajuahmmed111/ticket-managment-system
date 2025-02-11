@@ -5,7 +5,7 @@ import { Role } from '@prisma/client';
 
 const router = express.Router();
 
-// replay router
+// send replay 
 router.post('/replay/:receiverId', auth(), replayController.sendReplay);
 
 router.get('/channels', auth(), replayController.getUserChannels);
