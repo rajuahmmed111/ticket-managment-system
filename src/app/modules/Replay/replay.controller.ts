@@ -9,7 +9,7 @@ const sendReplay = catchAsync(async (req, res) => {
   const ticketId = req.params.ticketId;
   const { message } = req.body;
 
-  const result = await replayService.sendReplay(userId, ticketId, message);
+  const result = await replayService.sendReplay(senderId, ticketId, message);
 
   sendResponse(res, {
     statusCode: httpStatus.CREATED,
