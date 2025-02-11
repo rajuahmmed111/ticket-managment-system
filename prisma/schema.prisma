@@ -52,8 +52,7 @@ model User {
     updatedAt    DateTime   @updatedAt
     ticket       Ticket[]
     channel      Channel[]
-
-    message Message[]
+    replay       Replay[]
 
     @@map("users")
 }
@@ -78,14 +77,14 @@ model Channel {
     updatedAt   DateTime @updatedAt
 
     //Relations
-    person1Id String?   @db.ObjectId
-    person1   User?     @relation(fields: [person1Id], references: [id])
-    messages  Message[]
+    person1Id String?  @db.ObjectId
+    person1   User?    @relation(fields: [person1Id], references: [id])
+    replay    Replay[]
 
     @@map("channels")
 }
 
-model Message {
+model Replay {
     id        String   @id @default(auto()) @map("_id") @db.ObjectId
     message   String?
     createdAt DateTime @default(now())
