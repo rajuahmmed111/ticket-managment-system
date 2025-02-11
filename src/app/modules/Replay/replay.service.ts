@@ -84,59 +84,58 @@ const sendReplay = async (
   return allMessages;
 };
 
-const getMessages = async (channelName: string) => {  
-    const message = await prisma.channel.findMany({
-      where: {
-        channelName: channelName,
-      },
-      select: {
-        replay: {
-          include: {
-            sender: {
-              select: {
-                id: true,
-                firstName: true,
-                lastName: true,
-                email: true,
-              },
+// get all messages
+const getMessages = async (channelName: string) => {
+  const message = await prisma.channel.findMany({
+    where: {
+      channelName: channelName,
+    },
+    select: {
+      replay: {
+        include: {
+          sender: {
+            select: {
+              id: true,
+              firstName: true,
+              lastName: true,
+              email: true,
             },
           },
         },
       },
-    });
-  
-    return message;
-  };
-  
-  const getUserChannels = async (userId:string) =>{
-    const channels = await prisma.channel.findMany(({
-      where:{
-        OR:[
-          {person1Id:userId},
-          {person2Id:userId}
-        ]
-      },
-      include:{
-        person1:{
-          select:{
-            id:true,
-            firstName:true,
-            lastName:true,
-            profileImage:true
-          }
+    },
+  });
+
+  return message;
+};
+
+// get user channels
+const getUserChannels = async (userId: string) => {
+  const channels = await prisma.channel.findMany({
+    where: {
+      OR: [{ person1Id: userId }, { person2Id: userId }],
+    },
+    include: {
+      person1: {
+        select: {
+          id: true,
+          firstName: true,
+          lastName: true,
+          profileImage: true,
         },
-        person2:{
-          select:{
-            id:true,
-            firstName:true,
-            lastName:true,
-            profileImage:true
-          }
-        }
-      }
-    }))
-    return  channels
-  }
+      },
+      person2: {
+        select: {
+          id: true,
+          firstName: true,
+          lastName: true,
+          profileImage: true,
+        },
+      },
+    },
+  });
+  return channels;
+};
 
 export const replayService = {
   sendReplay,
