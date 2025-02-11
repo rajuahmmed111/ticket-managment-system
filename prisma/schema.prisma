@@ -80,7 +80,7 @@ model Channel {
     //Relations
     person1Id String?  @db.ObjectId
     person1   User?    @relation(fields: [person1Id], references: [id])
-    person2Id String?  @db.ObjectId
+    person2   String?  @db.ObjectId
     replay    Replay[]
 
     @@map("channels")
