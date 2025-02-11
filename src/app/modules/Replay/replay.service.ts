@@ -37,13 +37,34 @@ const sendReplay = async (
       if (!channel) {
         channel = await prismaTransaction.channel.create({
           data: {
-            channelName: channelName,
-            person1: senderId,
-            person2: receiverId,
+            channelName,
+            person1Id: senderId,
+            person2Id: receiverId,
           },
         });
       }
 
+      //create message
+      //  message created
+      const newMessage = await prismaTransaction.replay.create({
+        data: {
+          message,
+          senderId,
+          channelName: channelName,
+        },
+        include: {
+          sender: {
+            select: {
+              id: true,
+              firstName: true,
+              lastName: true,
+              email: true,
+            },
+          },
+        },
+      });
+
+      return [channel, newMessage];
     }
   );
 };
