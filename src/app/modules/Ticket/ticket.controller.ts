@@ -66,9 +66,26 @@ const viewTickets = catchAsync(async (req, res) => {
   });
 });
 
+// view single ticket
+
+const viewSingleTicket = catchAsync(async (req, res) => {
+  const userId = req.user?.id;
+  const ticketId = req.params.id;
+
+  const result = await ticketService.viewSingleTicket(ticketId, userId);
+
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: 'Ticket fetched successfully',
+    data: result,
+  });
+});
+
 export const ticketController = {
   createTicket,
   updateTicket,
   deleteTicket,
-  viewTickets
+  viewTickets,
+  viewSingleTicket
 };

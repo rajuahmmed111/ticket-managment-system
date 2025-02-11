@@ -98,7 +98,7 @@ const viewTickets = async (userId: string) => {
   }
 
   const tickets = await prisma.ticket.findMany({
-    where: { userId },
+    where: { userId, isDeleted: false },
     include: {
       user: {
         select: {
@@ -115,7 +115,6 @@ const viewTickets = async (userId: string) => {
 };
 
 // view single ticket
-
 const viewSingleTicket = async (ticketId: string, userId: string) => {
   if (!userId) {
     throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
@@ -143,4 +142,5 @@ export const ticketService = {
   updateTicket,
   deleteTicket,
   viewTickets,
+  viewSingleTicket,
 };

@@ -17,4 +17,7 @@ router.patch('/delete/:id', auth(), ticketController.deleteTicket);
 // tickets view
 router.get('/view', auth(), ticketController.viewTickets);
 
+// view single ticket
+router.get('/view/:id', auth(), ticketController.viewSingleTicket);
+
 export const ticketRoute = router;
