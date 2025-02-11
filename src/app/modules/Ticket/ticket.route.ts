@@ -5,6 +5,8 @@ import { ticketController } from './ticket.controller';
 
 const router = express.Router();
 
-router.post('/', auth(Role.CUSTOMER), ticketController.createTicket);
+// ticket create
+router.post('/create', auth(), ticketController.createTicket);
 
+// ticket update
 export const ticketRoute = router;

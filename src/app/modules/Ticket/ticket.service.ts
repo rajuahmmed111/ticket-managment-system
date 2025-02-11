@@ -8,13 +8,23 @@ const createTicket = async (payload: any, userId: string) => {
   }
 
   const newTicket = await prisma.ticket.create({
-    data: payload,
-    include: {
-      user: true,
+    data: {
+      ...payload,
+      userId,
     },
-    // where: {
-    //   id: userId,
-    // },
+    include: {
+      user: {
+        select: {
+          id: true,
+          firstName: true,
+          lastName: true,
+          profileImage: true,
+          UserStatus: true,
+          email: true,
+          role: true,
+        },
+      },
+    },
   });
 
   return newTicket;
