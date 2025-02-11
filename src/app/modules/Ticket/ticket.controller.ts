@@ -55,5 +55,5 @@ const deleteTicket = catchAsync(async (req, res) => {
 export const ticketController = {
   createTicket,
   updateTicket,
-  deleteTicket
+  deleteTicket,
 };
