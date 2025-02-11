@@ -64,6 +64,7 @@ model Ticket {
     description String
     status      ticketStatus @default(OPEN)
     user        User?        @relation(fields: [userId], references: [id])
+    isDeleted   Boolean      @default(false)
     createdAt   DateTime     @default(now())
     updatedAt   DateTime     @updatedAt
 
