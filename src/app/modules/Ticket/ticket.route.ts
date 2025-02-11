@@ -9,4 +9,6 @@ const router = express.Router();
 router.post('/create', auth(), ticketController.createTicket);
 
 // ticket update
+router.post('/update', auth(), ticketController.updateTicket)
+
 export const ticketRoute = router;

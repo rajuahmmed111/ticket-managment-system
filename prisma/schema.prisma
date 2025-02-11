@@ -62,7 +62,7 @@ model Ticket {
     userId      String?      @db.ObjectId
     subject     String
     description String
-    status      ticketStatus
+    status      ticketStatus @default(OPEN)
     user        User?        @relation(fields: [userId], references: [id])
     createdAt   DateTime     @default(now())
     updatedAt   DateTime     @updatedAt

@@ -18,6 +18,27 @@ const createTicket = catchAsync(async (req, res) => {
   });
 });
 
+// update ticket
+const updateTicket = catchAsync(async (req, res) => {
+  const userId = req.user?.id;
+  const ticketId = req.params.id;
+  const updatedTicketData = req.body;
+
+  const result = await ticketService.updateTicket(
+    updatedTicketData,
+    ticketId,
+    userId
+  );
+
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: 'Ticket updated successfully',
+    data: result,
+  });
+});
+
 export const ticketController = {
   createTicket,
+  updateTicket,
 };
