@@ -70,4 +70,5 @@ export const ticketController = {
   createTicket,
   updateTicket,
   deleteTicket,
+  viewTickets
 };

@@ -14,4 +14,8 @@ router.put('/update/:id', auth(), ticketController.updateTicket)
 // ticket soft delete
 router.patch('/delete/:id', auth(), ticketController.deleteTicket)
 
+// tickets view
+router.get('/view', auth(), ticketController.viewTickets);
+
+
 export const ticketRoute = router;
