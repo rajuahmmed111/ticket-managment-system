@@ -28,7 +28,7 @@ router.put(
 
 // update user profile image
 router.patch(
-  '/profile-img-update/:id',
+  '/profile-update/:id',
   auth(),
   fileUploader.uploadProfileImage,
   UserController.updateUserProfileImage
