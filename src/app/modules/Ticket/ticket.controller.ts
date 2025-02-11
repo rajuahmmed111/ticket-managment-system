@@ -52,6 +52,20 @@ const deleteTicket = catchAsync(async (req, res) => {
   });
 });
 
+// view tickets
+const viewTickets = catchAsync(async (req, res) => {
+  const userId = req.user?.id;
+
+  const result = await ticketService.viewTickets(userId);
+
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: 'Tickets fetched successfully',
+    data: result,
+  });
+});
+
 export const ticketController = {
   createTicket,
   updateTicket,

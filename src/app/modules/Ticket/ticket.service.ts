@@ -2,6 +2,7 @@ import httpStatus from 'http-status';
 import ApiError from '../../../errors/ApiErrors';
 import prisma from '../../../shared/prisma';
 
+// create ticket
 const createTicket = async (payload: any, userId: string) => {
   if (!userId) {
     throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
@@ -30,6 +31,7 @@ const createTicket = async (payload: any, userId: string) => {
   return newTicket;
 };
 
+//update ticket
 const updateTicket = async (payload: any, ticketId: string, userId: string) => {
   if (!userId) {
     throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
@@ -89,8 +91,35 @@ const deleteTicket = async (ticketId: string, userId: string) => {
   });
 };
 
+// view tickets
+const viewTickets = async (userId: string) => {
+  if (!userId) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
+  }
+
+  const tickets = await prisma.ticket.findMany({
+    where: { userId },
+    include: {
+      user: {
+        select: {
+          id: true,
+          firstName: true,
+          lastName: true,
+          profileImage: true,
+          UserStatus: true,
+          email: true,
+          role: true,
+        },
+      },
+    },
+  });
+
+  return tickets;
+};
+
 export const ticketService = {
   createTicket,
   updateTicket,
-  deleteTicket
+  deleteTicket,
+  viewTickets
 };
