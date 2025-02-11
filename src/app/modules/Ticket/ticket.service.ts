@@ -106,9 +106,6 @@ const viewTickets = async (userId: string) => {
           firstName: true,
           lastName: true,
           profileImage: true,
-          UserStatus: true,
-          email: true,
-          role: true,
         },
       },
     },
@@ -117,9 +114,33 @@ const viewTickets = async (userId: string) => {
   return tickets;
 };
 
+// view single ticket
+
+const viewSingleTicket = async (ticketId: string, userId: string) => {
+  if (!userId) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
+  }
+
+  const ticket = await prisma.ticket.findUnique({
+    where: {
+      id: ticketId,
+    },
+    include: {
+      user: {
+        select: {
+          id: true,
+          firstName: true,
+          lastName: true,
+          profileImage: true,
+        },
+      },
+    },
+  });
+};
+
 export const ticketService = {
   createTicket,
   updateTicket,
   deleteTicket,
-  viewTickets
+  viewTickets,
 };
