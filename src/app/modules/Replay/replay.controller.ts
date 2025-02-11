@@ -19,6 +19,37 @@ const sendReplay = catchAsync(async (req, res) => {
   });
 });
 
+// get all messages
+const getMessages = catchAsync(async (req, res) => {
+  const { channelName } = req.params;
+  //  console.log(channelName);
+
+  const messages = await replayService.getMessages(channelName);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Messages retrieved successfully',
+    data: messages,
+  });
+});
+
+const getUserChannels = catchAsync(async (req, res) => {
+  const userId = req.user?.id;
+  // console.log(userId);
+
+  const channels = await replayService.getUserChannels(userId);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Messages retrieved successfully',
+    data: channels,
+  });
+});
+
 export const replayController = {
   sendReplay,
+  getMessages,
+  getUserChannels,
 };
