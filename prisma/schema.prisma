@@ -21,6 +21,7 @@ enum Role {
     SUPER_ADMIN
     ADMIN
     CUSTOMER
+    EXECUTIVE
 }
 
 enum ticketStatus {
@@ -60,9 +61,9 @@ model Ticket {
     subject     String
     description String
     status      ticketStatus
-    priority    String
-    assignedTo  String
     user        User?        @relation(fields: [userId], references: [id])
     createdAt   DateTime     @default(now())
     updatedAt   DateTime     @updatedAt
+
+    @@map("tickets")
 }
