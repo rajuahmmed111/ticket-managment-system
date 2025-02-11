@@ -7,8 +7,8 @@ exports.jwtHelpers = void 0;
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const generateToken = (payload, secret, expiresIn) => {
     const token = jsonwebtoken_1.default.sign(payload, secret, {
-        algorithm: "HS256",
         expiresIn,
+        algorithm: 'HS256', // Explicit declaration, though it defaults to this.
     });
     return token;
 };
