@@ -51,6 +51,9 @@ model User {
     createdAt    DateTime   @default(now())
     updatedAt    DateTime   @updatedAt
     ticket       Ticket[]
+    channel      Channel[]
+
+    message Message[]
 
     @@map("users")
 }
@@ -66,4 +69,33 @@ model Ticket {
     updatedAt   DateTime     @updatedAt
 
     @@map("tickets")
+}
+
+model Channel {
+    id          String   @id @default(auto()) @map("_id") @db.ObjectId
+    channelName String   @unique
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+
+    //Relations
+    person1Id String?   @db.ObjectId
+    person1   User?     @relation(fields: [person1Id], references: [id])
+    messages  Message[]
+
+    @@map("channels")
+}
+
+model Message {
+    id        String   @id @default(auto()) @map("_id") @db.ObjectId
+    message   String?
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    // Relations
+    senderId    String   @db.ObjectId
+    sender      User     @relation(fields: [senderId], references: [id])
+    channelName String
+    Channel     Channel? @relation(fields: [channelName], references: [channelName])
+
+    @@map("messages")
 }
