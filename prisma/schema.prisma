@@ -49,17 +49,20 @@ model User {
     role         Role       @default(CUSTOMER)
     createdAt    DateTime   @default(now())
     updatedAt    DateTime   @updatedAt
+    ticket       Ticket[]
 
     @@map("users")
 }
 
 model Ticket {
     id          String       @id @default(auto()) @map("_id") @db.ObjectId
+    userId      String?      @db.ObjectId
     subject     String
     description String
     status      ticketStatus
     priority    String
     assignedTo  String
+    user        User?        @relation(fields: [userId], references: [id])
     createdAt   DateTime     @default(now())
     updatedAt   DateTime     @updatedAt
 }
