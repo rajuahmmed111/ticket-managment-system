@@ -42,7 +42,7 @@ model User {
     password     String
     userName     String     @unique
     dateOfBirth  DateTime?
-    profileImage String?
+    profileImage String?    @default("https://i.ibb.co.com/XfLzVy23/download.png")
     UserStatus   UserStatus @default(ACTIVE)
     otp          String?
     otpExpiry    DateTime?
