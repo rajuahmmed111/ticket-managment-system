@@ -1,11 +1,15 @@
-import express from "express"
-import { replayController } from "./replay.controller";
-import auth from "../../middleware/auth";
-import { Role } from "@prisma/client";
+import express from 'express';
+import { replayController } from './replay.controller';
+import auth from '../../middleware/auth';
+import { Role } from '@prisma/client';
 
 const router = express.Router();
 
 // replay router
-router.post("/replay", auth(Role.ADMIN), replayController.sendReplay)
+router.post(
+  '/replay/:receiverId',
+  auth(Role.ADMIN),
+  replayController.sendReplay
+);
 
-export const replayRoute = router
+export const replayRoute = router;
