@@ -123,6 +123,7 @@ const viewSingleTicket = async (ticketId: string, userId: string) => {
   const ticket = await prisma.ticket.findUnique({
     where: {
       id: ticketId,
+      isDeleted: false,
     },
     include: {
       user: {
@@ -135,6 +136,18 @@ const viewSingleTicket = async (ticketId: string, userId: string) => {
       },
     },
   });
+
+  if (!ticket) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Ticket not found');
+  }
+
+  if (ticket.userId !== userId) {
+    throw new ApiError(
+      httpStatus.FORBIDDEN,
+      'You are not authorized to view this ticket'
+    );
+  }
+  return ticket;
 };
 
 export const ticketService = {
