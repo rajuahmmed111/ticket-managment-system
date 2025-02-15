@@ -43,6 +43,8 @@ const checkUsername = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+
+// get single user
 const getUserById = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
 
