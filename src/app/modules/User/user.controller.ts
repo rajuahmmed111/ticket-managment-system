@@ -73,6 +73,8 @@ const getAllUsers = catchAsync(async (_req: Request, res: Response) => {
   });
 });
 
+
+// delete user
 const deleteUser = catchAsync(async (req: Request, res: Response) => {
   const userId = req.params.id;
   const loggedId = req.user.id;
