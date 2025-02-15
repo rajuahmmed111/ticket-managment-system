@@ -88,6 +88,8 @@ const deleteUser = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+
+// get new members
 const getNewMembers = catchAsync(async (req: Request, res: Response) => {
   const newMembers = await UserService.getNewMembers();
 
