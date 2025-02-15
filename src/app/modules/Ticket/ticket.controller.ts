@@ -3,7 +3,7 @@ import catchAsync from '../../../shared/catchAsync';
 import sendResponse from '../../../shared/sendResponse';
 import { ticketService } from './ticket.service';
 
-// create tickets
+// create ticket
 const createTicket = catchAsync(async (req, res) => {
   const userId = req.user?.id;
   const ticketData = req.body;
