@@ -58,6 +58,8 @@ const getUserById = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+
+// get all users
 const getAllUsers = catchAsync(async (_req: Request, res: Response) => {
   const users = await UserService.getAllUsers();
 
