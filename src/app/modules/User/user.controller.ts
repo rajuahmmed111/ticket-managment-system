@@ -17,6 +17,8 @@ const createUser = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+
+// check user name
 const checkUsername = catchAsync(async (req: Request, res: Response) => {
   const { firstName, lastName } = req.body;
 
