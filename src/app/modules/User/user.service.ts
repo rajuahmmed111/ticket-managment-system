@@ -7,6 +7,8 @@ import config from '../../../config';
 import { UserStatus } from '@prisma/client';
 import { ObjectId } from 'mongodb';
 
+
+// create user
 const createUser = async (payload: any) => {
   const existingUser = await prisma.user.findUnique({
     where: { email: payload.email },
