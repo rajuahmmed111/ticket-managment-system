@@ -116,6 +116,8 @@ const updateUser = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+
+// updat user profile
 const updateUserProfileImage = catchAsync(
   async (req: Request, res: Response) => {
     const userId = req.user?.id;
