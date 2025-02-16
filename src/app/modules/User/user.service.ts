@@ -49,6 +49,8 @@ const createUser = async (payload: any) => {
   return updateUser;
 };
 
+
+// check user  name
 const checkUsernameExists = async (userName: string) => {
   const existingUser = await prisma.user.findUnique({
     where: { userName },
