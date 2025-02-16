@@ -67,7 +67,6 @@ const viewTickets = catchAsync(async (req, res) => {
 });
 
 // view single ticket
-
 const viewSingleTicket = catchAsync(async (req, res) => {
   const userId = req.user?.id;
   const ticketId = req.params.id;
