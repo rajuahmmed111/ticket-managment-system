@@ -78,6 +78,8 @@ const getUserById = async (id: string) => {
   return user;
 };
 
+
+// delete a user
 const deleteUser = async (userId: string, loggedId: string) => {
   if (!ObjectId.isValid(userId)) {
     throw new ApiError(400, 'Invalid user ID format');
