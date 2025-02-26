@@ -163,6 +163,7 @@ const updateUser = async (email: string, updates: UpdateUserInput) => {
   return updatedUser;
 };
 
+// update user profile image
 const updateUserProfileImage = async (
   userId: string,
   profileImageUrl: string
