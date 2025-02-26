@@ -8,6 +8,7 @@ const router = express.Router();
 // send replay 
 router.post('/send-message/:receiverId', auth(), replayController.sendReplay);
 
+// get channels
 router.get('/channels', auth(), replayController.getUserChannels);
 
 // get all message
