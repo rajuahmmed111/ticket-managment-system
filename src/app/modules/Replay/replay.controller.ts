@@ -34,6 +34,7 @@ const getMessages = catchAsync(async (req, res) => {
   });
 });
 
+// get channels
 const getUserChannels = catchAsync(async (req, res) => {
   const userId = req.user?.id;
   // console.log(userId);
