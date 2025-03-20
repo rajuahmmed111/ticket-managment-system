@@ -34,6 +34,7 @@ const createTicket = async (payload: any, userId: string) => {
 
 //update ticket
 const updateTicket = async (payload: any, ticketId: string, userId: string) => {
+  // user validation
   if (!userId) {
     throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
   }
