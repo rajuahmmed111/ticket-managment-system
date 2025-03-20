@@ -8,6 +8,7 @@ const createTicket = async (payload: any, userId: string) => {
     throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
   }
 
+  // new ticket
   const newTicket = await prisma.ticket.create({
     data: {
       ...payload,
