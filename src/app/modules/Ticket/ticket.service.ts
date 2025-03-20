@@ -57,6 +57,7 @@ const updateTicket = async (payload: any, ticketId: string, userId: string) => {
     );
   }
 
+  // update the ticket
   const updatedTicket = await prisma.ticket.update({
     where: { id: ticketId },
     data: payload,
