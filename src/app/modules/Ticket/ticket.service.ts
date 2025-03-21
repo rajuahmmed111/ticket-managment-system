@@ -90,7 +90,7 @@ const deleteTicket = async (ticketId: string, userId: string) => {
     );
   }
 
-  // update
+  
   await prisma.ticket.update({
     where: { id: ticketId },
     data: { isDeleted: true },
